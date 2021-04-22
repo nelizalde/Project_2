@@ -1,9 +1,8 @@
-
 API_KEY = "pk.eyJ1IjoiY2Fyb2x5YW4iLCJhIjoiY2tuMjBhZTR2MGNydzJvdGVpODR1bnF2dSJ9.RdVBWnEtcnEUGn3_B5SvYA"
 
 var hotel_locations = []
 
-// Load data from csv
+// Load second top hotel data from csv
 d3.csv("europesctop.csv").then(function(schotelData){
   // console.log(schotelData);
   for (var i = 0; i <11; i++) {
@@ -23,11 +22,11 @@ console.log(hotel_locations)
 // Creating map object
 var myMap = L.map("map", {
   center: [54.5260, -15.2551],
-  zoom: 11
+  zoom: 20
 });
 
 // Adding tile layer to the map
-L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+var second = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
   attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
   tileSize: 512,
   maxZoom: 18,
@@ -36,9 +35,14 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
+// Load top Europe hotel data from json
+d3.json("http://127.0.0.1:5000/data", function(data) {
+  console.log(data);
+});
 
 
-// //loop thro
+
+// //create marker cluster group for the europe second top hotel
 var hotelMarkers = L.markerClusterGroup();
 
 for (var i = 0; i < hotel_locations.length; i++) {
@@ -49,10 +53,14 @@ for (var i = 0; i < hotel_locations.length; i++) {
   );
 }
 
+// //Layer of top Europe hotel data
+// var overlayMaps = {
+//   "Top Europe Hotels": topHotelMarkers,
+//   "Second Top Europe Hotels": hotelMarkers
+// };
 
-
+// L.control.layers(overlayMaps).addTo(map)
 //Add our marker cluster layer to the map
 myMap.addLayer(hotelMarkers);
-
 
 
