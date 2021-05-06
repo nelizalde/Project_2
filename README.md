@@ -8,4 +8,5 @@ Templates: https://github.com/nelizalde/Project_2/tree/main/templates
 - Data Analysis Hotel Review vs. Date:
 https://github.com/nelizalde/Project_2/tree/main/test_folder/static
 
-- Avg Score/Total Number of Reviews vs. Country
+- Avg Score/Total Number of Reviews vs. Country:
+https://github.com/nelizalde/Project_2/tree/main/visual_folder
